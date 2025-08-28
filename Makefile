@@ -1,8 +1,11 @@
 # -----    RULES     -----
-
 run:
 	@echo "Starting the FastAPI server..."
 	@uvicorn store_api.main:app --reload
+
+precommit-install:
+	@echo "Installing pre-commit hooks..."
+	@pipenv run pre-commit install
 
 create-migrations:
 	@echo "Creating a new Alembic migration..."
