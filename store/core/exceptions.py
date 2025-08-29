@@ -8,3 +8,9 @@ class BaseException(Exception):
 
 class NotFoundException(BaseException):
     message = "Not Found"
+
+
+class InsertErrorException(BaseException):
+    def __init__(self, message: str = "Erro ao inserir o registro"):
+        self.message = message
+        super().__init__(self.message)
