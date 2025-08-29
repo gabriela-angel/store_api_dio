@@ -11,6 +11,7 @@ pydantic-settings = "*"
 motor = "<4.0,>=3.4.0"
 pytest = "*"
 pytest-asyncio = "*"
+pre-commit = "*"
 
 [dev-packages]
 
