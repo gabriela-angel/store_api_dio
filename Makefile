@@ -1,7 +1,7 @@
 # -----    RULES     -----
 run:
 	@echo "Starting the FastAPI server..."
-	@uvicorn store_api.main:app --reload
+	@uvicorn store.main:app --reload
 
 precommit-install:
 	@echo "Installing pre-commit hooks..."
@@ -11,11 +11,6 @@ test:
 	@echo "Running tests with pytest..."
 	-@PYTHONPATH=$PYTHONPATH:$(pwd) pipenv run pytest -v tests/ || true
 
-# "m" is the message for the migration
-create-migrations:
-	@echo "Creating a new Alembic migration..."
-	@PYTHONPATH=$PYTHONPATH:$(pwd) alembic revision --autogenerate -m "$(m)"
-
-run-migrations:
-	@echo "Running Alembic migrations..."
-	@PYTHONPATH=$PYTHONPATH:$(pwd) alembic upgrade head
+test-matching:
+	@echo "Running tests with pytest for matching files..."
+	-@PYTHONPATH=$PYTHONPATH:$(pwd) pipenv run pytest -s -rx -k $(K) --pdb store ./tests/ || true
